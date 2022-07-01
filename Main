@@ -1,0 +1,126 @@
+local function GenerateRandomCharacter()
+    local AlphabetIndex = {
+        "a",      
+         "b",        
+         "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "!",
+        "?",
+        ".",
+        ",",
+        ":",
+        ";",
+        "'",
+        "$",
+        "%",
+        "&",
+        "*",
+    }
+    local RandomCharacter = tostring(AlphabetIndex[math.random(#AlphabetIndex)])
+    return RandomCharacter
+    end
+
+
+
+    function GenerateRandomString(length)
+        local string = ""
+        for i = 1, length do
+            string = string .. GenerateRandomCharacter()
+        end
+        return string
+    end
+    local TableOfStrings = {
+    }
+    function StoreRandomStrings()
+        for i = 1, 10 do
+            TableOfStrings[i] = "EVIEOB_" .. GenerateRandomString(16)
+            -- If the beginning of the string is not a letter, it will be replaced with a letter.
+            if string.sub(TableOfStrings[i], 1, 1) ~= string.match(TableOfStrings[i], "%a") then
+                TableOfStrings[i] = string.sub(TableOfStrings[i], 2)
+                TableOfStrings[i] = string.match(TableOfStrings[i], "%a") .. TableOfStrings[i]
+                   
+                end
+            end
+        end
+    StoreRandomStrings()
+
+local function IsStringValid(string)
+  -- Check if string exists in the table.
+    for i = 1, #TableOfStrings do
+        if string == TableOfStrings[i] then
+        return true
+        end
+    end
+end
+
+if IsStringValid("EVIEOB_") then
+    print("String is valid")
+else
+end
+
+
+local function AllowAccess(string)
+    if IsStringValid(string) then
+        print("Access granted")
+    else
+        print("Access denied")
+    end
+end
